@@ -52,16 +52,16 @@ BaseSkinFragment
 
 其中有三个load的方法区别：
 ```
-SkinManager.getInstance().load(skinPackagePath,callback)：第一次加载外部资源。得到一个skin后  （三个过程的回调都发生在主线程）
+第一次加载外部资源。得到一个skin后  （三个过程的回调都发生在主线程）
+SkinManager.getInstance().load(skinPackagePath,callback)：
 
-SkinManager.getInstance().loadCallBack(callback);
-```
 如果你之前加载这个资源后，以后想再去加载直接调用这个即可
+SkinManager.getInstance().loadCallBack(callback);
 
-SkinManager.getInstance().loadPath(skinPath)：
 加载资源。不想得到一个应用的skin callback。传入skin路径即可
-
-你也可以在代码中动态的添加SkinView
+SkinManager.getInstance().loadPath(skinPath)：
+```
+你也可以在代码中动态的添加SkinView（后面有说明）
 如：
 ```
  代码中常有给View动态的去设置BackgroundimageView.setBackground(R);
