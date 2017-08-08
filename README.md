@@ -153,4 +153,18 @@ android:tag="skin:view_color:background:color|other_view_color:background:color"
 ``
 
 **如果想要更灵活的切换N种theme**
+**只需要两步：**
+
+SkinSwitchManager：
+第一步：
+ //支持链式添加theme
+ SkinSwitchManager.getSkinSwitchManager().saveSkinTheme(1, "第一个theme路径")
+                .saveSkinTheme(2, "第二个theme路径");
+第二步：
+ 想要切换到第一个主题直接调用：
+  SkinSwitchManager.getSkinSwitchManager().switchSkinTheme(1);
+
+
+如果恢复到默认主题：
+  SkinSwitchManager.getSkinSwitchManager().restoreDefaultTheme();
 
