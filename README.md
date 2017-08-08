@@ -10,12 +10,20 @@
 你需要打包一个APK的skin，把生成的XXX.Apk修改成XXX.skin
 很简单就是需要新建一个Android工程，里面存放你需要换肤的资源（drawable ，color (attr),color文件）等。
 注意：命名一定要与你的项目中的命名要一样，否则会找不到该资源。
+再放到XXX.skin文件放到手机目录下就可以了（也可以支持在线换肤，从服务器下载xx.skin文件保存到本地）
+
 **第二步：**
 ```
 在application的onCreate()中去初始化框架：
-SkinManager.getInstance().init(this);
-SkinManager.getInstance().load();
+SkinManager.getInstance().init(this).load(); 
 ```
+或者 得到一个加载theme状态回调
+```
+SkinManager.getInstance().init(this).loadCallBack(callback)
+```
+也可以添加多个skin
+
+
 当然如果你想打印skin log 可以	SkinManage.getInstance().isOpenLog(true);;
 默认log是关闭的。
 
