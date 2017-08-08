@@ -1,6 +1,3 @@
-# OkSkin
-
-
         **Skin集成文档**
 
 
@@ -65,7 +62,7 @@ Color,dimen,string 同理
 按照以上都是基本上可以完成大部分换肤需求
 
 
-**我是一个分割线---------------------------------**
+**自定义View换肤**
 特别系列：
 假如现在我们需要支持自定义View换肤该怎么办?
 如：
@@ -85,8 +82,8 @@ app:mytextColor = "@color/XXXX"
 
 接下来就是把改属性注入到框架内（注意一定要在setContentView之前注册）：
 
-	``SkinManager.getInstance()
-.registAttrHolder("mytextColor",newMyViewColorHolder());
+``
+SkinManager.getInstance().registAttrHolder("mytextColor",newMyViewColorHolder());
 ``
 attrName （mytextColor）建议不要重复命名，不要跟Android自带attribute一样
 如果一样可以继承之前的attrHolder Override  apply方法   super（）不可注释掉
@@ -106,7 +103,7 @@ SkinManager.getInstance().registAttrHolderMap(attrMap)
 没关系你可以选择任何时机去调用
 SkinManager.getInstance().removeAttrHolder(attrName, skin)即可移除该属性。
 
-**我又是一个分割线--------------------------------------**
+**特殊windowManager的支持**
 
 
 你现在又有新的疑惑那各种窗体如：（dialog ， popouWindow,windowManager）
@@ -117,13 +114,9 @@ SkinManager.getInstance().removeAttrHolder(attrName, skin)即可移除该属性�
 现在就需要用到另外一个类：
 ``
 SkinSuffixWindowManager：
-
 SkinSuffixWindowManager.getInstace().addWindowView(mView).applySkinForViews(true);
-``
 传入你的View,设置为true 就是ViewChild也支持换肤
-
 或者你只想传入view resID
-``
 mView=SkinSuffixWindowManager.getInstace().addWindowViewRef(viewId, root).applySkinForViews(true);
 ``
 Addviewm(View)
@@ -135,7 +128,8 @@ Addviewm(View)
         android:layout_height="100dp"
         android:orientation="vertical"
          android:background="@color/view_color"
-        android:tag="skin:view_color:background:color"></RelativeLayout>
+        android:tag="skin:view_color:background:color">
+        </RelativeLayout>
 ``
 如果你想支持更多属性：
 配置规范  skin:xx|xx
@@ -157,9 +151,8 @@ android:tag="skin:view_color:background:color|other_view_color:background:color"
 
 SkinSwitchManager：
 第一步：
- //支持链式添加theme
- SkinSwitchManager.getSkinSwitchManager().saveSkinTheme(1, "第一个theme路径")
-                .saveSkinTheme(2, "第二个theme路径");
+ SkinSwitchManager.getSkinSwitchManager().saveSkinTheme(1, "第一个skin路径")
+                .saveSkinTheme(2, "第二个skin路径");
 第二步：
  想要切换到第一个主题直接调用：
   SkinSwitchManager.getSkinSwitchManager().switchSkinTheme(1);
@@ -167,4 +160,7 @@ SkinSwitchManager：
 
 如果恢复到默认主题：
   SkinSwitchManager.getSkinSwitchManager().restoreDefaultTheme();
+
+
+
 
