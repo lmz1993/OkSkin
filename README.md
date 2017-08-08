@@ -163,8 +163,10 @@ android:tag="skin:view_color:background:color|other_view_color:background:color"
 **SkinSwitchManager**
 
 第一步：
-``` SkinSwitchManager.getSkinSwitchManager().saveSkinTheme(1, "第一个skin路径")
-                .saveSkinTheme(2, "第二个skin路径");```
+``` 
+SkinSwitchManager.getSkinSwitchManager().saveSkinTheme(1, "第一个skin路径")
+                .saveSkinTheme(2, "第二个skin路径");
+```
 第二步：
  想要切换到第一个主题直接调用：
  ``` SkinSwitchManager.getSkinSwitchManager().switchSkinTheme(1);```
