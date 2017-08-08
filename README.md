@@ -5,6 +5,7 @@
 支持Android  原生view和自定义View，窗体（dialog ， popouWindow,windowManager）等换肤。
 
 
+
 **第一步：**
 你需要打包一个APK的skin，把生成的XXX.Apk修改成XXX.skin
 很简单就是需要新建一个Android工程，里面存放你需要换肤的资源（drawable ，color (attr),color文件）等。
@@ -24,17 +25,18 @@ SkinManager.getInstance().initSDK(this);
 则可以不用初始化：SkinManager.getInstance().init(this);
 
 **第三步：**
-``
+
 有三个base继承，降低了继承的难度（当然只作为参考）
 分别是：
 ``
 BaseSkinActivity
 BaseSkinFragmentActivity
 BaseSkinFragment
+``
 如果你的base已经继承了第三方Base可以把框架的Base作为参考，复制到你的Base中即可.
 
 **第四步：**
-File skin = new File(“skin文件路径”);
+``File skin = new File(“skin文件路径”);``
 
 如果想恢复默认资源
 调用SkinManager.getInstance().restoreDefaultTheme()
@@ -42,7 +44,7 @@ File skin = new File(“skin文件路径”);
 其中有三个load的方法区别：
 ``
 SkinManager.getInstance().load(skinPackagePath,callback)：第一次加载外部资源。得到一个skin后  （三个过程的回调都发生在主线程）
-``
+
 SkinManager.getInstance().loadCallBack(callback);
 ``
 如果你之前加载这个资源后，以后想再去加载直接调用这个即可
@@ -54,10 +56,13 @@ SkinManager.getInstance().loadPath(skinPath)：
 如：
 
  代码中常有给View动态的去设置BackgroundimageView.setBackground(R);
+ 
 使用SkinManager.getInstance().getDrwable(R.drwable.XXX)获取Drawable
-如：
-imageView.setBackground(SkinManager.getInstance().getDrawable(R.drawable.XXX));
 
+如：
+``
+imageView.setBackground(SkinManager.getInstance().getDrawable(R.drawable.XXX));
+``
 Color,dimen,string 同理
 按照以上都是基本上可以完成大部分换肤需求
 
@@ -91,12 +96,14 @@ attrName （mytextColor）建议不要重复命名，不要跟Android自带attri
 以上就是自定义View attr change skin 方式
 假如你说怎么每次都需要得到一个skinManager的实例很麻烦？
 没关系框架支持链试调用如
+
 ``
 SkinManager.getInstance()
 .registAttrHolder("mytextColor",new MyViewColorHolder()
 .registAttrHolder("otherTextColor",new   OtherViewColorHolder());
 ``
-恩？还觉得不够优雅，也可以使用map的方式注入
+
+恩？还觉得不够优雅，也可以使用map的方式注入自定义属性
 SkinManager.getInstance().registAttrHolderMap(attrMap)
 
 突然需求更改了。某某个自定义属性不想支持attr了
@@ -118,8 +125,8 @@ SkinSuffixWindowManager.getInstace().addWindowView(mView).applySkinForViews(true
 传入你的View,设置为true 就是ViewChild也支持换肤
 或者你只想传入view resID
 mView=SkinSuffixWindowManager.getInstace().addWindowViewRef(viewId, root).applySkinForViews(true);
-``
 Addviewm(View)
+``
 规范如：
 ``
     <RelativeLayout
@@ -133,7 +140,7 @@ Addviewm(View)
 ``
 如果你想支持更多属性：
 配置规范  skin:xx|xx
-````
+``
   <RelativeLayout
         android:id="@+id/popup_window"
         android:layout_width="160dp"
@@ -149,18 +156,19 @@ android:tag="skin:view_color:background:color|other_view_color:background:color"
 **如果想要更灵活的切换N种theme**
 **只需要两步：**
 
-SkinSwitchManager：
+**SkinSwitchManager**
+
 第一步：
- SkinSwitchManager.getSkinSwitchManager().saveSkinTheme(1, "第一个skin路径")
-                .saveSkinTheme(2, "第二个skin路径");
+`` SkinSwitchManager.getSkinSwitchManager().saveSkinTheme(1, "第一个skin路径")
+                .saveSkinTheme(2, "第二个skin路径");``
 第二步：
  想要切换到第一个主题直接调用：
-  SkinSwitchManager.getSkinSwitchManager().switchSkinTheme(1);
+ `` SkinSwitchManager.getSkinSwitchManager().switchSkinTheme(1);``
 
 
 如果恢复到默认主题：
-  SkinSwitchManager.getSkinSwitchManager().restoreDefaultTheme();
+ `` SkinSwitchManager.getSkinSwitchManager().restoreDefaultTheme();``
 
 
-
+----------------------欢迎start-----------------------
 
