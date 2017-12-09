@@ -184,5 +184,5 @@ SkinSwitchManager.getSkinSwitchManager().saveSkinTheme(1, "第一个skin路径")
  ```SkinSwitchManager.getSkinSwitchManager().restoreDefaultTheme();```
 
 
-----------------------恩都滑到这里了，老死机就点个Start吧-----------------------
+----------------------恩都滑到这里了，老铁就点个Start吧-----------------------
 
